@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Money Clicker PRO</title>
+
+  <meta
+    name="description"
+    content="Gioco clicker PRO con canvas 2D, tab, eventi casuali, missioni giornaliere, prestigio, suoni e animazioni."
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!--
+    Ordine importante:
+    1) icons.js
+    2) data.js
+    3) audio.js
+    4) script.js
+  -->
+  <script defer src="js/icons.js"></script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Money Clicker PRO</h1>
+
+    <div class="stats">
+      <div class="stat big">
+        <span>Soldi</span>
+        <strong id="money">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Per click</span>
+        <strong id="perClick">1</strong>
+      </div>
+
+      <div class="stat">
+        <span>Per secondo</span>
+        <strong id="perSec">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Moltiplicatore</span>
+        <strong id="mult">x1.00</strong>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel game-panel">
+      <canvas id="gameCanvas"></canvas>
+      <p class="hint">
+        Clicca la moneta e occhio agli eventi casuali.
+      </p>
+    </section>
+
+    <aside class="panel side-panel">
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="shop" data-icon="shop" data-label="Negozio"></button>
+        <button class="tab-btn" data-tab="stats" data-icon="chart" data-label="Statistiche"></button>
+        <button class="tab-btn" data-tab="achievements" data-icon="trophy" data-label="Obiettivi"></button>
+        <button class="tab-btn" data-tab="missions" data-icon="mission" data-label="Missioni"></button>
+        <button class="tab-btn" data-tab="options" data-icon="settings" data-label="Opzioni"></button>
+      </nav>
+
+      <div class="tab-panel panel-tab" data-panel="shop">
+        <div id="shopList"></div>
+      </div>
+
+      <div class="tab-panel panel-tab hidden" data-panel="stats">
+        <div id="statsList"></div>
+      </div>
+
+      <div class="tab-panel panel-tab hidden" data-panel="achievements">
+        <div id="achievementsList"></div>
+      </div>
+
+      <div class="tab-panel panel-tab hidden" data-panel="missions">
+        <div class="missions-header">
+          <div>
+            <strong>Missioni giornaliere</strong>
+            <div id="missionsDate" class="subtle"></div>
+          </div>
+
+          <button id="claimAllBtn" class="buy small">
+            Riscatta tutto
+          </button>
+        </div>
+
+        <div id="missionsList"></div>
+      </div>
+
+      <div class="tab-panel panel-tab hidden" data-panel="options">
+        <div class="option-group">
+          <h3>Impostazioni</h3>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="soundToggle" />
+            <span>Suoni</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="particlesToggle" />
+            <span>Particelle</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="eventsToggle" />
+            <span>Eventi casuali</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="autosaveToggle" />
+            <span>Salvataggio automatico</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="offlineToggle" />
+            <span>Guadagno offline</span>
+          </label>
+        </div>
+
+        <div class="prestige-box">
+          <h3>Prestigio / Rebirth</h3>
+          <div id="prestigeInfo"></div>
+          <button id="prestigeBtn" class="danger">Prestigio</button>
+        </div>
+
+        <div class="save-row">
+          <button id="saveBtn" class="buy">Salva ora</button>
+          <button id="resetBtn" class="danger">Reset totale</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast"></div>
+</body>
+</html>
