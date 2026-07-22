@@ -1,6 +1,6 @@
-# Money Clicker MEGA
+# Money Clicker
 
-Versione mega del clicker con:
+Versione del clicker con:
 
 - Canvas 2D professionale
 - Sprite procedurali
