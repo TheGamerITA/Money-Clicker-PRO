@@ -3,99 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Money Clicker PRO</title>
-
-  <meta
-    name="description"
-    content="Gioco clicker PRO con canvas 2D, tab, eventi casuali, missioni giornaliere, prestigio, suoni e animazioni."
-  />
+  <title>Money Clicker MEGA</title>
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <!--
-    Ordine importante:
-    1) icons.js
-    2) data.js
-    3) audio.js
-    4) script.js
-  -->
   <script defer src="js/icons.js"></script>
+  <script defer src="js/utils.js"></script>
   <script defer src="js/data.js"></script>
   <script defer src="js/audio.js"></script>
-  <script defer src="js/script.js"></script>
+  <script defer src="js/sprites.js"></script>
+  <script defer src="js/state.js"></script>
+  <script defer src="js/missions.js"></script>
+  <script defer src="js/achievements.js"></script>
+  <script defer src="js/minigames.js"></script>
+  <script defer src="js/events.js"></script>
+  <script defer src="js/canvas.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
 </head>
-<body>
-  <header>
-    <h1>Money Clicker PRO</h1>
-
-    <div class="stats">
-      <div class="stat big">
-        <span>Soldi</span>
-        <strong id="money">0</strong>
+<body data-theme="default">
+  <div class="app">
+    <aside class="sidebar panel">
+      <div class="logo">
+        <span class="logo-icon">${''}</span>
+        <div>
+          <div class="logo-title">Money Clicker</div>
+          <div class="logo-sub">MEGA</div>
+        </div>
       </div>
 
-      <div class="stat">
-        <span>Per click</span>
-        <strong id="perClick">1</strong>
+      <button class="nav-btn active" data-panel="game" data-icon="coin" data-label="Gioco"></button>
+      <button class="nav-btn" data-panel="shop" data-icon="shop" data-label="Negozio"></button>
+      <button class="nav-btn" data-panel="skills" data-icon="atom" data-label="Abilità"></button>
+      <button class="nav-btn" data-panel="missions" data-icon="mission" data-label="Missioni"></button>
+      <button class="nav-btn" data-panel="achievements" data-icon="trophy" data-label="Obiettivi"></button>
+      <button class="nav-btn" data-panel="games" data-icon="dice" data-label="Giochi"></button>
+      <button class="nav-btn" data-panel="themes" data-icon="theme" data-label="Temi"></button>
+      <button class="nav-btn" data-panel="stats" data-icon="chart" data-label="Statistiche"></button>
+      <button class="nav-btn" data-panel="options" data-icon="settings" data-label="Opzioni"></button>
+
+      <div class="sidebar-footer">
+        <div class="pill" id="skillPointsPill">0 PT</div>
+        <div class="pill soft" id="versionPill">v3.0</div>
       </div>
+    </aside>
 
-      <div class="stat">
-        <span>Per secondo</span>
-        <strong id="perSec">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>Moltiplicatore</span>
-        <strong id="mult">x1.00</strong>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="panel game-panel">
-      <canvas id="gameCanvas"></canvas>
-      <p class="hint">
-        Clicca la moneta e occhio agli eventi casuali.
-      </p>
-    </section>
-
-    <aside class="panel side-panel">
-      <nav class="tabs">
-        <button class="tab-btn active" data-tab="shop" data-icon="shop" data-label="Negozio"></button>
-        <button class="tab-btn" data-tab="stats" data-icon="chart" data-label="Statistiche"></button>
-        <button class="tab-btn" data-tab="achievements" data-icon="trophy" data-label="Obiettivi"></button>
-        <button class="tab-btn" data-tab="missions" data-icon="mission" data-label="Missioni"></button>
-        <button class="tab-btn" data-tab="options" data-icon="settings" data-label="Opzioni"></button>
-      </nav>
-
-      <div class="tab-panel panel-tab" data-panel="shop">
-        <div id="shopList"></div>
-      </div>
-
-      <div class="tab-panel panel-tab hidden" data-panel="stats">
-        <div id="statsList"></div>
-      </div>
-
-      <div class="tab-panel panel-tab hidden" data-panel="achievements">
-        <div id="achievementsList"></div>
-      </div>
-
-      <div class="tab-panel panel-tab hidden" data-panel="missions">
-        <div class="missions-header">
-          <div>
-            <strong>Missioni giornaliere</strong>
-            <div id="missionsDate" class="subtle"></div>
+    <div class="content">
+      <section class="topbar panel">
+        <div class="stats">
+          <div class="stat big">
+            <span>Soldi</span>
+            <strong id="money">0</strong>
           </div>
 
-          <button id="claimAllBtn" class="buy small">
-            Riscatta tutto
-          </button>
+          <div class="stat">
+            <span>Per click</span>
+            <strong id="perClick">1</strong>
+          </div>
+
+          <div class="stat">
+            <span>Per secondo</span>
+            <strong id="perSec">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Moltiplicatore</span>
+            <strong id="mult">x1.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel view" data-view="game">
+        <div class="panel-head">
+          <h2>Area Clicker</h2>
+          <div class="subtle">Canvas 2D, eventi, boss e animazioni</div>
         </div>
 
-        <div id="missionsList"></div>
-      </div>
+        <canvas id="gameCanvas"></canvas>
 
-      <div class="tab-panel panel-tab hidden" data-panel="options">
+        <div class="game-hints">
+          <span class="chip">Click critici</span>
+          <span class="chip">Eventi casuali</span>
+          <span class="chip">Boss</span>
+          <span class="chip">Mini-giochi</span>
+        </div>
+      </section>
+
+      <section class="panel view hidden" data-view="shop">
+        <div class="panel-head">
+          <h2>Negozio</h2>
+          <div class="subtle">Upgrade multipli e sblocchi meccaniche</div>
+        </div>
+        <div id="shopList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="skills">
+        <div class="panel-head">
+          <h2>Albero delle Abilità</h2>
+          <div class="subtle">Usa i Punti Abilità</div>
+        </div>
+        <div id="skillsList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="missions">
+        <div class="panel-head">
+          <h2>Missioni</h2>
+          <div class="subtle">Giornaliere e settimanali</div>
+        </div>
+        <div id="missionsList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="achievements">
+        <div class="panel-head">
+          <h2>Obiettivi progressivi</h2>
+          <div class="subtle">Ricompense speciali</div>
+        </div>
+        <div id="achievementsList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="games">
+        <div class="panel-head">
+          <h2>Mini-giochi</h2>
+          <div class="subtle">Roulette e Slot Machine</div>
+        </div>
+        <div id="gamesList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="themes">
+        <div class="panel-head">
+          <h2>Temi</h2>
+          <div class="subtle">Temi sbloccabili</div>
+        </div>
+        <div id="themesList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="stats">
+        <div class="panel-head">
+          <h2>Statistiche</h2>
+          <div class="subtle">Tutti i numeri del gioco</div>
+        </div>
+        <div id="statsList"></div>
+      </section>
+
+      <section class="panel view hidden" data-view="options">
+        <div class="panel-head">
+          <h2>Opzioni</h2>
+          <div class="subtle">Impostazioni, prestigio e salvataggio</div>
+        </div>
+
         <div class="option-group">
           <h3>Impostazioni</h3>
 
@@ -135,10 +190,20 @@
           <button id="saveBtn" class="buy">Salva ora</button>
           <button id="resetBtn" class="danger">Reset totale</button>
         </div>
-      </div>
-    </aside>
-  </main>
+      </section>
+    </div>
+  </div>
 
-  <div id="toast"></div>
+  <div id="notifications"></div>
+
+  <div id="modalOverlay" class="hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Titolo</h3>
+        <button id="modalCloseBtn" class="icon-btn">✕</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

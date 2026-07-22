@@ -1,15 +1,26 @@
-# Money Clicker PRO
+# Money Clicker MEGA
 
-Versione PRO del clicker con:
+Versione mega del clicker con:
 
-- Canvas 2D
-- Tab separate
-- Eventi casuali
+- Canvas 2D professionale
+- Sprite procedurali
+- Sfondi animati a livelli
+- Boss click
+- Upgrade avanzati
+- Albero delle abilità
+- Mini-giochi
+- Roulette
+- Slot machine
+- Eventi a scelta multipla
 - Missioni giornaliere
+- Missioni settimanali
+- Achievement progressivi
+- Ricompense speciali
+- Sidebar moderna
+- Notifiche animate
+- Modali
+- Temi sbloccabili
 - Prestige / Rebirth
-- Suoni WebAudio
-- Icone SVG
-- Particelle e animazioni
 
 ## Come avviarlo
 
@@ -21,23 +32,45 @@ Versione PRO del clicker con:
 ## File principali
 
 ### `js/data.js`
-Qui modifichi:
+Contiene:
 - upgrade
-- obiettivi
-- configurazione
-- tipi di missione
+- skill
+- achievement
+- temi
+- eventi scelta
+- simboli slot
 
-### `js/icons.js`
-Qui puoi aggiungere o modificare icone SVG.
-
-### `js/audio.js`
-Qui puoi modificare i suoni.
-
-### `js/script.js`
-Qui c'è la logica principale:
-- canvas
-- eventi
-- missioni
-- prestigio
-- UI
+### `js/state.js`
+Contiene:
+- stato gioco
 - salvataggio
+- matematica clicker
+- prestigio
+- temi
+
+### `js/canvas.js`
+Contiene:
+- rendering canvas
+- coin animata
+- boss
+- particelle
+- sfondi
+
+### `js/events.js`
+Contiene:
+- eventi casuali
+- boss reward
+- eventi scelta
+
+### `js/minigames.js`
+Contiene:
+- roulette
+- slot machine
+
+### `js/ui.js`
+Contiene:
+- sidebar
+- pannelli
+- notifiche
+- modali
+- rendering UI

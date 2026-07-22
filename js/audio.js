@@ -5,14 +5,12 @@ const AudioFX = {
   init() {
     if (this.ctx) return;
 
-    const AudioContextClass =
-      window.AudioContext || window.webkitAudioContext;
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
 
-    if (!AudioContextClass) return;
-
-    this.ctx = new AudioContextClass();
+    this.ctx = new Ctx();
     this.master = this.ctx.createGain();
-    this.master.gain.value = 0.2;
+    this.master.gain.value = 0.18;
     this.master.connect(this.ctx.destination);
 
     if (this.ctx.state === "suspended") {
@@ -21,7 +19,7 @@ const AudioFX = {
   },
 
   play(freq, duration = 0.08, type = "sine", volume = 0.3, slideTo = 0) {
-    if (!state.settings.sound) return;
+    if (!State.current.settings.sound) return;
 
     this.init();
     if (!this.ctx) return;
@@ -31,7 +29,6 @@ const AudioFX = {
     }
 
     const now = this.ctx.currentTime;
-
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
@@ -39,10 +36,7 @@ const AudioFX = {
     osc.frequency.setValueAtTime(freq, now);
 
     if (slideTo) {
-      osc.frequency.exponentialRampToValueAtTime(
-        Math.max(30, slideTo),
-        now + duration
-      );
+      osc.frequency.exponentialRampToValueAtTime(Math.max(30, slideTo), now + duration);
     }
 
     gain.gain.setValueAtTime(volume * 0.4, now);
@@ -84,5 +78,20 @@ const AudioFX = {
     [440, 660, 880, 1320].forEach((freq, i) => {
       setTimeout(() => this.play(freq, 0.14, "triangle", 0.25, freq * 1.5), i * 90);
     });
+  },
+
+  win() {
+    [660, 880, 990, 1320].forEach((freq, i) => {
+      setTimeout(() => this.play(freq, 0.12, "triangle", 0.24, freq * 1.2), i * 70);
+    });
+  },
+
+  lose() {
+    this.play(320, 0.14, "sawtooth", 0.2, 120);
+  },
+
+  boss() {
+    this.play(120, 0.25, "sawtooth", 0.28, 60);
+    setTimeout(() => this.play(90, 0.3, "square", 0.22, 45), 120);
   }
 };
